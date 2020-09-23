@@ -1,13 +1,13 @@
 #coding:utf-8
 import xml.dom.minidom
-import sys
 import json
-reload(sys)
+import importlib,sys
+importlib.reload(sys)
 sys.setdefaultencoding('utf8')
 
 xml = open("news_sohusite_xml.txt").read()
 docs_xml = xml.split('<doc>\n')
-print len(docs_xml)
+print(len(docs_xml))
 del docs_xml[0]
 docs = []
 
@@ -21,7 +21,7 @@ for doc_xml in docs_xml:
     doc = {'url':url, 'docno':docno, 'title':title, 'content':content}
     docs.append(doc)
 
-print len(docs)
+print(len(docs))
 fout = open("news_sohusite.json",'w')
 fout.write(json.dumps(docs,ensure_ascii=False))
 fout.close()
